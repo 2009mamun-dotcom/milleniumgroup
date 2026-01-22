@@ -7,9 +7,52 @@ header {
     display: flex; justify-content: space-between; align-items: center;
     position: sticky; top: 0; z-index: 1000;
 }
-.logo-container { display: flex; flex-direction: column; }
-.logo-container img { height: 45px; width: auto; }
-.slogan { font-size: 11px; color: #0a7cff; letter-spacing: 1px; }
+/* Logo Container Styles */
+.logo-container {
+    display: flex;
+    flex-direction: column; /* লোগোর নিচে স্লোগান রাখার জন্য */
+    align-items: flex-start; /* বাম দিকে সারিবদ্ধ করার জন্য */
+    gap: 2px; /* লোগো এবং স্লোগানের মাঝখানের দূরত্ব */
+}
+
+/* Logo Image Style */
+.logo-container img {
+    height: 50px; /* লোগোর উচ্চতা */
+    width: auto;  /* অনুপাত ঠিক রাখার জন্য */
+    display: block;
+    transition: transform 0.3s ease; /* হোভার ইফেক্টের জন্য */
+}
+
+/* Logo Hover Effect */
+.logo-container img:hover {
+    transform: scale(1.05); /* মাউস নিলে লোগো সামান্য বড় হবে */
+}
+
+/* Slogan Style */
+.slogan {
+    font-size: 11px; /* স্লোগানের লেখা ছোট রাখার জন্য */
+    color: #0a7cff;  /* আপনার ব্র্যান্ড কালার (নীল) */
+    font-weight: 300;
+    letter-spacing: 1.5px; /* অক্ষরের মাঝখানের দূরত্ব */
+    text-transform: uppercase; /* সবগুলো বড় হাতের অক্ষর */
+    font-style: italic; /* স্লোগানকে আলাদা দেখাতে বাঁকা করা */
+}
+
+/* Mobile View Adjustments */
+@media (max-width: 768px) {
+    .logo-container {
+        align-items: center; /* মোবাইলে লোগো মাঝখানে দেখাবে */
+        margin-bottom: 10px;
+    }
+    
+    .logo-container img {
+        height: 40px; /* মোবাইলে লোগো সামান্য ছোট হবে */
+    }
+    
+    .slogan {
+        font-size: 9px;
+    }
+}
 .nav-links { display: flex; gap: 20px; }
 .nav-links a { color: #fff; text-decoration: none; font-size: 14px; transition: 0.3s; }
 .nav-links a:hover { color: #0a7cff; }
