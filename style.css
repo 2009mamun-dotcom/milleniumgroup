@@ -89,3 +89,54 @@ footer { background: #0b1c2d; color: white; text-align: center; padding: 25px; }
     header { flex-direction: column; text-align: center; }
     .nav-links { margin-top: 15px; flex-wrap: wrap; justify-content: center; gap: 10px; }
 }
+/* লোগো এবং নাম পাশাপাশি রাখার কন্টেইনার */
+.logo-area {
+    display: flex;
+    align-items: center; /* লোগো এবং লেখাকে লম্বালম্বিভাবে মাঝখানে রাখবে */
+    gap: 15px; /* লোগো এবং নামের মাঝখানের গ্যাপ */
+}
+
+/* লোগো ইমেজের ডিজাইন */
+.main-logo {
+    height: 55px; /* আপনার প্রয়োজনমতো ছোট-বড় করতে পারেন */
+    width: auto;
+    border-radius: 5px; /* লোগোর কোণা সামান্য রাউন্ড করার জন্য */
+}
+
+/* নাম এবং স্লোগানকে নিচে নিচে রাখার জন্য */
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* কোম্পানির নামের ডিজাইন */
+.company-name {
+    font-size: 22px;
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 1.2;
+    margin: 0;
+}
+
+/* স্লোগানের ডিজাইন */
+.slogan {
+    font-size: 10px;
+    color: #0a7cff;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 2px;
+}
+
+/* মোবাইল রেসপনসিভ ডিজাইন */
+@media (max-width: 768px) {
+    .main-logo {
+        height: 45px;
+    }
+    .company-name {
+        font-size: 18px;
+    }
+    .slogan {
+        font-size: 8px;
+    }
+}
