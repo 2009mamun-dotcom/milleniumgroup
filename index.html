@@ -1,66 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maxrika Group | Home</title>
+    <title>Smart Test Paper Assistant</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <header>
-        <nav>
-            <div class="logo-container">
-                <img src="maria.png" alt="Maxrika Logo" class="logo-img">
-                <span class="logo-text">MAXRIKA GROUP</span>
-            </div>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="#business">Our Businesses</a></li>
-                <li><a href="tech.html">Technology</a></li>
-            </ul>
-        </nav>
+        <h1>Smart Test Paper Assistant</h1>
+        <p>HSC ২০২৬ প্রিপারেশন ট্র্যাকার</p>
     </header>
 
-    <section class="hero">
-        <h1>The Essence of <span>Excellence</span></h1>
-        <p>Your trusted partner in diverse industrial solutions.</p>
-    </section>
+    <div class="container">
+        <aside class="sidebar">
+            <h3>অধ্যায় নির্বাচন করুন</h3>
+            <select id="chapterFilter">
+                <option value="all">সব অধ্যায়</option>
+                <option value="logic-gate">লজিক গেট</option>
+                <option value="networking">কমিউনিকেশন সিস্টেম</option>
+            </select>
+            
+            <div class="stats">
+                <p>সমাধান করেছেন: <span id="solvedCount">0</span></p>
+            </div>
+        </aside>
 
-    <section id="business" class="content-section">
-        <h2 class="section-title">Our Business Units</h2>
-        <div class="grid">
-            <a href="electric.html" class="card">
-                <h3>Electric Product</h3>
-                <p>High-quality electrical components and solutions.</p>
-            </a>
-            <a href="sports.html" class="card">
-                <h3>Sports Item</h3>
-                <p>Premium sports gear for professionals and enthusiasts.</p>
-            </a>
-            <a href="tubewell.html" class="card">
-                <h3>Tubewell & Pump</h3>
-                <p>Reliable water solutions for agriculture and industry.</p>
-            </a>
-            <a href="lighting.html" class="card">
-                <h3>Lightings</h3>
-                <p>Innovative LED and commercial lighting systems.</p>
-            </a>
-            <a href="agro.html" class="card">
-                <h3>Agro Farm</h3>
-                <p>Sustainable farming and organic products.</p>
-            </a>
-            <a href="tech.html" class="card tech-card">
-                <h3>Technology & IT</h3>
-                <p>Click to explore our Digital & Hardware services.</p>
-            </a>
-        </div>
-    </section>
+        <main class="question-area" id="questionArea">
+            </main>
+    </div>
 
-    <footer>
-        <p>&copy; 2026 Maxrika Group | All Rights Reserved.</p>
-    </footer>
-
+    <script src="script.js"></script>
 </body>
 </html>
