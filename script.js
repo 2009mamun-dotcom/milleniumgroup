@@ -1,34 +1,62 @@
-let currentSlide = 0;
+// আপনার টেস্ট পেপার ডাটা (JSON)
+const questions = [
+    {
+        id: 1,
+        chapter: "logic-gate",
+        text: "NAND গেটের আউটপুট কখন ১ হয়?",
+        board: "ঢাকা বোর্ড ২০২৩",
+        solved: false
+    },
+    {
+        id: 2,
+        chapter: "networking",
+        text: "ব্লুটুথ এর স্ট্যান্ডার্ড কোনটি?",
+        board: "রাজশাহী বোর্ড ২০২২",
+        solved: false
+    }
+];
 
-async function loadSocialActivities() {
-    try {
-        const response = await fetch('social_data.json');
-        const data = await response.json();
-        const slider = document.getElementById('social-slider');
-        
-        data.forEach(item => {
-            const slide = document.createElement('div');
-            slide.className = 'social-card';
-            slide.innerHTML = `
-                <img src="${item.photo}" alt="${item.title}">
-                <h3>${item.title}</h3>
-                <a href="${item.link}" class="btn">View Details</a>
-            `;
-            slider.appendChild(slide);
-        });
-    } catch (error) {
-        console.error("Error loading activities:", error);
+const questionArea = document.getElementById('questionArea');
+const chapterFilter = document.getElementById('chapterFilter');
+
+// প্রশ্ন দেখানোর ফাংশন
+function displayQuestions(filter) {
+    questionArea.innerHTML = "";
+    const filtered = filter === "all" ? questions : questions.filter(q => q.chapter === filter);
+
+    filtered.forEach(q => {
+        const card = document.createElement('div');
+        card.className = `card ${q.solved ? 'solved' : ''}`;
+        card.innerHTML = `
+            <span class="tag">${q.board}</span>
+            <p><strong>প্রশ্ন:</strong> ${q.text}</p>
+            <button class="btn-solve" onclick="markSolved(${q.id})">
+                ${q.solved ? 'সমাধান করা হয়েছে' : 'সমাধান হিসেবে মার্ক করুন'}
+            </button>
+        `;
+        questionArea.appendChild(card);
+    });
+}
+
+// সলভড মার্ক করার ফাংশন
+function markSolved(id) {
+    const q = questions.find(item => item.id === id);
+    if(q) {
+        q.solved = !q.solved;
+        displayQuestions(chapterFilter.value);
+        updateStats();
     }
 }
 
-function moveSlide(direction) {
-    const slider = document.querySelector('.slider-wrapper');
-    const slides = document.querySelectorAll('.social-card');
-    const totalSlides = slides.length;
-
-    currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
-    slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+function updateStats() {
+    const count = questions.filter(q => q.solved).length;
+    document.getElementById('solvedCount').innerText = count;
 }
 
-// Initialize
-loadSocialActivities();
+// ফিল্টার চেঞ্জ ইভেন্ট
+chapterFilter.addEventListener('change', (e) => {
+    displayQuestions(e.target.value);
+});
+
+// শুরুতে সব প্রশ্ন দেখাও
+displayQuestions("all");
