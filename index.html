@@ -2,35 +2,27 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Test Paper Assistant</title>
+    <title>Dashboard - HSC Assistant</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <header>
-        <h1>Smart Test Paper Assistant</h1>
-        <p>HSC ২০২৬ প্রিপারেশন ট্র্যাকার</p>
+        <h2>HSC Test Paper Tracker</h2>
     </header>
 
-    <div class="container">
-        <aside class="sidebar">
-            <h3>অধ্যায় নির্বাচন করুন</h3>
-            <select id="chapterFilter">
-                <option value="all">সব অধ্যায়</option>
-                <option value="logic-gate">লজিক গেট</option>
-                <option value="networking">কমিউনিকেশন সিস্টেম</option>
-            </select>
-            
-            <div class="stats">
-                <p>সমাধান করেছেন: <span id="solvedCount">0</span></p>
-            </div>
-        </aside>
+    <div class="subject-container">
+        <a href="physics2nd.html" class="card">
+            <div class="icon">⚡</div>
+            <h3>Physics 2nd Paper</h3>
+            <p>বোর্ড প্রশ্ন ও সমাধান</p>
+        </a>
 
-        <main class="question-area" id="questionArea">
-            </main>
-    </div>
+        <a href="ict.html" class="card">
+            <div class="icon">💻</div>
+            <h3>ICT</h3>
+            <p>অধ্যায় ভিত্তিক ট্র্যাকার</p>
+        </a>
 
-    <script src="script.js"></script>
+        </div>
 </body>
 </html>
