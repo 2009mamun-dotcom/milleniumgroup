@@ -1,9 +1,20 @@
-body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f4f7f6; margin: 0; }
-header { background: #008080; color: white; text-align: center; padding: 20px; }
-.container { display: flex; padding: 20px; gap: 20px; }
-.sidebar { width: 250px; background: white; padding: 20px; border-radius: 8px; height: fit-content; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-.question-area { flex: 1; display: flex; flex-direction: column; gap: 15px; }
-.card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-.tag { font-size: 12px; background: #e0f2f1; color: #00796b; padding: 3px 8px; border-radius: 4px; }
-.btn-solve { margin-top: 10px; padding: 8px 15px; background: #008080; color: white; border: none; border-radius: 4px; cursor: pointer; }
-.solved { border-left: 5px solid #4caf50; }
+body { font-family: 'Arial', sans-serif; background: #f4f4f9; margin: 0; padding: 0; }
+header { background: #008080; color: white; padding: 20px; text-align: center; }
+
+/* Auth Box */
+.auth-box { width: 300px; margin: 100px auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
+button { width: 100%; padding: 10px; background: #008080; color: white; border: none; border-radius: 5px; cursor: pointer; }
+.secondary { background: #555; margin-top: 10px; }
+
+/* Dashboard Cards */
+.subject-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; padding: 40px; }
+.card { background: white; padding: 20px; border-radius: 10px; text-decoration: none; color: #333; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-bottom: 4px solid #008080; transition: 0.3s; }
+.card:hover { transform: translateY(-5px); }
+.icon { font-size: 40px; }
+
+/* Question Cards */
+.content { padding: 20px; }
+.q-card { background: white; padding: 15px; border-radius: 8px; margin-bottom: 10px; border-left: 5px solid #008080; }
+.tag { font-size: 12px; color: #008080; font-weight: bold; }
+.solve-btn { width: auto; padding: 5px 10px; font-size: 12px; margin-top: 5px; }
