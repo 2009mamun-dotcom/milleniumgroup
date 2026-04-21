@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HSC Assistant - Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="auth-box">
+        <h2>HSC Test Paper Portal</h2>
+        <input type="email" id="email" placeholder="ইমেইল অ্যাড্রেস">
+        <input type="password" id="password" placeholder="পাসওয়ার্ড">
+        <div class="btn-group">
+            <button id="loginBtn">লগইন</button>
+            <button id="signupBtn" class="secondary">অ্যাকাউন্ট খুলুন</button>
+        </div>
+        <p id="msg"></p>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyC79M6Syp77yf2ftpL38FgBqH-mqAEWAx8",
+            authDomain: "maxrika-aa386.firebaseapp.com",
+            projectId: "maxrika-aa386",
+            storageBucket: "maxrika-aa386.firebasestorage.app",
+            messagingSenderId: "787890137415",
+            appId: "1:787890137415:web:5f4aaa97ba103493f2c462",
+            measurementId: "G-2NHQMLHXZM"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // Sign Up
+        document.getElementById('signupBtn').onclick = () => {
+            const email = document.getElementById('email').value;
+            const pass = document.getElementById('password').value;
+            createUserWithEmailAndPassword(auth, email, pass)
+                .then(() => alert("অ্যাকাউন্ট তৈরি হয়েছে! এখন লগইন করুন।"))
+                .catch(err => alert(err.message));
+        };
+
+        // Login
+        document.getElementById('loginBtn').onclick = () => {
+            const email = document.getElementById('email').value;
+            const pass = document.getElementById('password').value;
+            signInWithEmailAndPassword(auth, email, pass)
+                .then(() => window.location.href = "index.html")
+                .catch(err => alert("ভুল ইমেইল বা পাসওয়ার্ড!"));
+        };
+    </script>
+</body>
+</html>
