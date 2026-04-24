@@ -3,65 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HSC Assistant - Login & Sign Up</title>
+    <title>HSC Assistant - Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        /* CSS Section */
+        :root {
+            --primary-blue: #0052cc;
+            --light-bg: #f4f7fa;
+            --text-dark: #1a1a1a;
+            --transition: all 0.6s ease-in-out;
+        }
+
         * { box-sizing: border-box; font-family: 'Inter', sans-serif; }
         
         body {
-            background: #f0f2f5;
+            background: var(--light-bg);
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
+            padding: 15px;
         }
 
         .container {
             background-color: #fff;
-            border-radius: 12px;
-            box-shadow: 0 14px 28px rgba(0,0,0,0.1), 0 10px 10px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             position: relative;
             overflow: hidden;
-            width: 800px;
+            width: 850px;
             max-width: 100%;
-            min-height: 500px;
+            min-height: 550px;
         }
 
+        /* Forms Styling */
         .form-container {
             position: absolute;
             top: 0;
             height: 100%;
-            transition: all 0.6s ease-in-out;
+            transition: var(--transition);
         }
 
-        /* Sign In Styling */
-        .sign-in-container {
-            left: 0;
-            width: 50%;
-            z-index: 2;
-        }
+        .sign-in-container { left: 0; width: 50%; z-index: 2; }
+        .sign-up-container { left: 0; width: 50%; opacity: 0; z-index: 1; }
 
-        /* Sign Up Styling */
-        .sign-up-container {
-            left: 0;
-            width: 50%;
-            opacity: 0;
-            z-index: 1;
-        }
-
-        /* Animation logic when "right-panel-active" is added */
-        .container.right-panel-active .sign-in-container {
-            transform: translateX(100%);
-            opacity: 0;
-        }
-
-        .container.right-panel-active .sign-up-container {
-            transform: translateX(100%);
-            opacity: 1;
-            z-index: 5;
+        /* Slide Animation Logic */
+        .container.right-panel-active .sign-in-container { transform: translateX(100%); opacity: 0; }
+        .container.right-panel-active .sign-up-container { 
+            transform: translateX(100%); 
+            opacity: 1; 
+            z-index: 5; 
             animation: show 0.6s;
         }
 
@@ -70,212 +63,143 @@
             50%, 100% { opacity: 1; z-index: 5; }
         }
 
-        /* Forms */
         form {
             background-color: #FFFFFF;
             display: flex;
             align-items: flex-start;
             justify-content: center;
             flex-direction: column;
-            padding: 0 40px;
+            padding: 0 45px;
             height: 100%;
-            text-align: left;
         }
 
-        .logo { color: #0052cc; font-weight: bold; margin-bottom: 10px; display: flex; align-items: center; gap: 5px; }
-
-        h1 { font-size: 24px; margin: 5px 0; color: #1a1a1a; }
+        .logo { color: var(--primary-blue); font-weight: 700; font-size: 22px; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+        h1 { font-size: 24px; margin: 5px 0; color: var(--text-dark); }
         p { font-size: 14px; color: #666; margin-bottom: 20px; }
 
-        .social-container {
-            display: flex;
-            gap: 10px;
-            width: 100%;
-            margin-bottom: 15px;
-        }
-
+        .social-container { display: flex; gap: 12px; width: 100%; margin-bottom: 15px; }
         .social-btn {
-            flex: 1;
-            border: 1px solid #ddd;
-            background: white;
-            padding: 10px;
-            border-radius: 6px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            font-size: 14px;
+            flex: 1; border: 1px solid #ddd; background: #fff; padding: 10px; border-radius: 8px;
+            cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px;
+            transition: 0.3s;
         }
+        .social-btn:hover { background: #f9f9f9; }
 
-        .divider {
-            width: 100%;
-            text-align: center;
-            border-bottom: 1px solid #eee;
-            line-height: 0.1em;
-            margin: 20px 0;
-            font-size: 12px;
-            color: #999;
-        }
-
+        .divider { width: 100%; text-align: center; border-bottom: 1px solid #eee; line-height: 0.1em; margin: 20px 0; font-size: 12px; color: #aaa; }
         .divider span { background:#fff; padding:0 10px; }
 
-        input {
-            background-color: #f9f9f9;
-            border: 1px solid #eee;
-            padding: 12px 15px;
-            margin: 8px 0;
-            width: 100%;
-            border-radius: 6px;
-            outline: none;
-        }
-
-        .options {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            font-size: 12px;
-            margin: 10px 0;
-        }
+        input { background-color: #f8f9fb; border: 1px solid #eaedf2; padding: 12px 15px; margin: 8px 0; width: 100%; border-radius: 8px; outline: none; }
+        
+        .options { display: flex; justify-content: space-between; width: 100%; font-size: 12px; margin: 10px 0; }
+        .options a { color: var(--primary-blue); text-decoration: none; }
 
         button.main-btn {
-            border-radius: 6px;
-            border: none;
-            background-color: #0052cc;
-            color: #FFFFFF;
-            font-size: 14px;
-            font-weight: bold;
-            padding: 12px 0;
-            width: 100%;
-            cursor: pointer;
-            transition: background 0.3s;
+            border-radius: 8px; border: none; background-color: var(--primary-blue); color: #fff;
+            font-size: 15px; font-weight: 600; padding: 12px; width: 100%; cursor: pointer;
+            transition: 0.3s; margin-top: 10px;
         }
-
         button.main-btn:hover { background: #0041a3; }
 
-        /* Overlay */
+        /* Overlay Styling */
         .overlay-container {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            width: 50%;
-            height: 100%;
-            overflow: hidden;
-            transition: transform 0.6s ease-in-out;
-            z-index: 100;
+            position: absolute; top: 0; left: 50%; width: 50%; height: 100%;
+            overflow: hidden; transition: var(--transition); z-index: 100;
         }
-
-        .container.right-panel-active .overlay-container {
-            transform: translateX(-100%);
-        }
-
+        .container.right-panel-active .overlay-container { transform: translateX(-100%); }
+        
         .overlay {
-            background: #0052cc;
             background: linear-gradient(135deg, #0052cc 0%, #007bff 100%);
-            color: #FFFFFF;
-            position: relative;
-            left: -100%;
-            height: 100%;
-            width: 200%;
-            transform: translateX(0);
-            transition: transform 0.6s ease-in-out;
+            color: #FFFFFF; position: relative; left: -100%; height: 100%; width: 200%;
+            transform: translateX(0); transition: var(--transition);
         }
-
-        .container.right-panel-active .overlay {
-            transform: translateX(50%);
-        }
+        .container.right-panel-active .overlay { transform: translateX(50%); }
 
         .overlay-panel {
-            position: absolute;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            padding: 0 40px;
-            text-align: center;
-            top: 0;
-            height: 100%;
-            width: 50%;
-            transition: transform 0.6s ease-in-out;
+            position: absolute; display: flex; align-items: center; justify-content: center;
+            flex-direction: column; padding: 0 40px; text-align: center; top: 0; height: 100%;
+            width: 50%; transition: var(--transition);
         }
-
         .overlay-left { transform: translateX(-20%); }
         .container.right-panel-active .overlay-left { transform: translateX(0); }
-
         .overlay-right { right: 0; transform: translateX(0); }
         .container.right-panel-active .overlay-right { transform: translateX(20%); }
 
-        .ghost {
-            background-color: transparent;
-            border: 1px solid #FFFFFF;
-            color: #fff;
-            padding: 10px 30px;
-            border-radius: 6px;
-            margin-top: 20px;
-            cursor: pointer;
+        .ghost-btn {
+            background-color: transparent; border: 1.5px solid #FFFFFF; color: #fff;
+            padding: 10px 35px; border-radius: 8px; cursor: pointer; margin-top: 25px; font-weight: 600;
         }
-        
-        .img-mockup {
-            background: rgba(255,255,255,0.1);
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
+
+        /* --- Mobile Responsiveness --- */
+        @media (max-width: 768px) {
+            .container { min-height: 600px; width: 100%; }
+            .overlay-container { display: none; }
+            .form-container { width: 100%; position: relative; }
+            .sign-up-container { display: none; opacity: 1; transform: none; }
+            
+            .container.right-panel-active .sign-in-container { display: none; }
+            .container.right-panel-active .sign-up-container { display: flex; transform: none; }
+            
+            .mobile-toggle { display: block !important; width: 100%; text-align: center; margin-top: 20px; font-size: 14px; color: #666; }
+            .mobile-toggle span { color: var(--primary-blue); font-weight: 600; cursor: pointer; }
+            
+            form { padding: 0 25px; }
         }
+        .mobile-toggle { display: none; }
     </style>
 </head>
 <body>
 
     <div class="container" id="container">
         <div class="form-container sign-up-container">
-            <form action="#">
-                <h1>Create Account</h1>
-                <p>Join us to access HSC materials</p>
+            <form>
+                <h1>অ্যাকাউন্ট তৈরি করুন</h1>
+                <p>আমাদের সাথে যুক্ত হতে আপনার তথ্য দিন</p>
                 <input type="text" id="regName" placeholder="Full Name" />
-                <input type="email" id="regEmail" placeholder="Email" />
+                <input type="email" id="regEmail" placeholder="Email Address" />
                 <input type="password" id="regPass" placeholder="Password" />
-                <button type="button" class="main-btn" id="signupAction">Sign Up</button>
+                <button type="button" class="main-btn" id="signupBtn">Sign Up</button>
+                <div class="mobile-toggle">Already have an account? <span id="toSignIn">Login</span></div>
             </form>
         </div>
 
         <div class="form-container sign-in-container">
-            <form action="#">
-                <div class="logo"><i class="fas fa-dot-circle"></i> dotwork</div>
-                <h1>Log in to your Account</h1>
-                <p>Welcome back! Select method to log in:</p>
+            <form>
+                <div class="logo"><i class="fas fa-graduation-cap"></i> HSC Portal</div>
+                <h1>Log in to Account</h1>
+                <p>Welcome back! Select a method:</p>
                 
                 <div class="social-container">
                     <button type="button" class="social-btn"><i class="fab fa-google" style="color: #DB4437;"></i> Google</button>
                     <button type="button" class="social-btn"><i class="fab fa-facebook-f" style="color: #4267B2;"></i> Facebook</button>
                 </div>
                 
-                <div class="divider"><span>or continue with email</span></div>
+                <div class="divider"><span>or use email</span></div>
                 
-                <input type="email" id="email" placeholder="Email" />
-                <input type="password" id="password" placeholder="Password" />
+                <input type="email" id="loginEmail" placeholder="Email" />
+                <input type="password" id="loginPass" placeholder="Password" />
                 
                 <div class="options">
                     <label><input type="checkbox"> Remember me</label>
-                    <a href="#" style="color: #0052cc; text-decoration: none;">Forgot Password?</a>
+                    <a href="#">Forgot Password?</a>
                 </div>
                 
-                <button type="button" class="main-btn" id="loginAction">Log in</button>
+                <button type="button" class="main-btn" id="loginBtn">Log in</button>
+                <div class="mobile-toggle">New here? <span id="toSignUp">Create Account</span></div>
             </form>
         </div>
 
         <div class="overlay-container">
             <div class="overlay">
                 <div class="overlay-panel overlay-left">
-                    <h1>Welcome Back!</h1>
-                    <p>To keep connected with us please login with your personal info</p>
-                    <button class="ghost" id="signIn">Sign In</button>
+                    <h1>ফিরে আসার জন্য স্বাগতম!</h1>
+                    <p>আপনার ব্যক্তিগত তথ্য দিয়ে পুনরায় লগইন করুন</p>
+                    <button class="ghost-btn" id="signIn">Sign In</button>
                 </div>
                 <div class="overlay-panel overlay-right">
-                    <div class="img-mockup">
-                        <i class="fas fa-layer-group fa-3x"></i>
-                    </div>
-                    <h1>Connect with every application.</h1>
-                    <p>Everything you need in an easily customizable dashboard.</p>
-                    <button class="ghost" id="signUp">Create Account</button>
+                    <div style="margin-bottom: 20px;"><i class="fas fa-rocket fa-4x"></i></div>
+                    <h1>Connect with Ease.</h1>
+                    <p>HSC পরীক্ষার প্রস্তুতির সব রিসোর্স পাবেন এখানে।</p>
+                    <button class="ghost-btn" id="signUp">Create Account</button>
                 </div>
             </div>
         </div>
@@ -285,7 +209,7 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
         import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
 
-        // Your Firebase Config
+        // Your Firebase Config (Replace if different)
         const firebaseConfig = {
             apiKey: "AIzaSyC79M6Syp77yf2ftpL38FgBqH-mqAEWAx8",
             authDomain: "maxrika-aa386.firebaseapp.com",
@@ -298,34 +222,40 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
 
-        // Panel Switching Logic
-        const signUpButton = document.getElementById('signUp');
-        const signInButton = document.getElementById('signIn');
+        // UI Interaction
         const container = document.getElementById('container');
+        const signUpBtn = document.getElementById('signUp');
+        const signInBtn = document.getElementById('signIn');
+        const toSignUp = document.getElementById('toSignUp');
+        const toSignIn = document.getElementById('toSignIn');
 
-        signUpButton.addEventListener('click', () => {
-            container.classList.add("right-panel-active");
-        });
+        // Toggle Animation
+        signUpBtn.onclick = () => container.classList.add("right-panel-active");
+        signInBtn.onclick = () => container.classList.remove("right-panel-active");
+        
+        // Mobile Toggle
+        toSignUp.onclick = () => container.classList.add("right-panel-active");
+        toSignIn.onclick = () => container.classList.remove("right-panel-active");
 
-        signInButton.addEventListener('click', () => {
-            container.classList.remove("right-panel-active");
-        });
-
-        // Firebase Auth Logic
-        document.getElementById('signupAction').onclick = () => {
+        // Firebase Auth Operations
+        document.getElementById('signupBtn').onclick = () => {
             const email = document.getElementById('regEmail').value;
             const pass = document.getElementById('regPass').value;
+            if(!email || !pass) return alert("সব তথ্য দিন!");
+            
             createUserWithEmailAndPassword(auth, email, pass)
-                .then(() => alert("অ্যাকাউন্ট তৈরি হয়েছে!"))
+                .then(() => alert("অ্যাকাউন্ট সফলভাবে তৈরি হয়েছে!"))
                 .catch(err => alert(err.message));
         };
 
-        document.getElementById('loginAction').onclick = () => {
-            const email = document.getElementById('email').value;
-            const pass = document.getElementById('password').value;
+        document.getElementById('loginBtn').onclick = () => {
+            const email = document.getElementById('loginEmail').value;
+            const pass = document.getElementById('loginPass').value;
+            if(!email || !pass) return alert("ইমেইল ও পাসওয়ার্ড দিন!");
+
             signInWithEmailAndPassword(auth, email, pass)
                 .then(() => window.location.href = "index.html")
-                .catch(err => alert("ভুল ইমেইল বা পাসওয়ার্ড!"));
+                .catch(err => alert("লগইন ব্যর্থ হয়েছে। সঠিক তথ্য দিন।"));
         };
     </script>
 </body>
