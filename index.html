@@ -15,140 +15,237 @@
             --glass-bg: rgba(255, 255, 255, 0.05);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        body { background-color: var(--navy-dark); color: var(--text-white); scroll-behavior: smooth; overflow-x: hidden; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+        }
 
-        /* Navbar with Hamburger */
+        body {
+            background-color: var(--navy-dark);
+            color: var(--text-white);
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* Navbar with Hamburger Menu */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 5%;
-            background: rgba(5, 10, 24, 0.95);
-            backdrop-filter: blur(10px);
+            padding: 20px 8%;
+            background: rgba(5, 10, 24, 0.85);
+            backdrop-filter: blur(15px);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 2000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .logo { font-size: 1.5rem; font-weight: bold; color: var(--accent-blue); letter-spacing: 1px; }
-
-        .menu-icon {
+        .logo {
             font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--accent-blue);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .menu-btn {
+            font-size: 2rem;
             cursor: pointer;
-            color: var(--text-white);
+            color: var(--accent-blue);
             z-index: 3000;
-        }
-
-        .nav-menu {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 250px;
-            height: 100vh;
-            background: rgba(10, 25, 47, 0.98);
-            display: flex;
-            flex-direction: column;
-            padding: 80px 30px;
-            gap: 25px;
-            transition: 0.4s ease-in-out;
-            box-shadow: -10px 0 30px rgba(0,0,0,0.5);
-        }
-
-        .nav-menu.active { right: 0; }
-
-        .nav-menu a {
-            text-decoration: none;
-            color: var(--text-white);
-            font-size: 1.1rem;
-            font-weight: 500;
             transition: 0.3s;
         }
 
-        .nav-menu a:hover { color: var(--accent-blue); padding-left: 10px; }
-
-        .btn-login-nav {
-            background: linear-gradient(45deg, var(--accent-blue), var(--accent-purple));
-            border: none;
-            color: white;
-            padding: 12px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: bold;
+        /* Side Navigation Menu */
+        .side-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            height: 100vh;
+            background: rgba(10, 25, 47, 0.98);
+            backdrop-filter: blur(20px);
+            display: flex;
+            flex-direction: column;
+            padding: 100px 40px;
+            gap: 25px;
+            transition: 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+            box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+            z-index: 2500;
         }
 
-        /* Hero & Dashboard Styles (Same as before) */
-        .hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; background: radial-gradient(circle at center, #112240 0%, #050a18 100%); }
-        .hero-content h1 { font-size: 3.5rem; background: linear-gradient(to right, var(--accent-blue), var(--accent-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px; }
+        .side-nav.active { right: 0; }
+
+        .side-nav a {
+            text-decoration: none;
+            color: var(--text-white);
+            font-size: 1.2rem;
+            font-weight: 500;
+            transition: 0.3s;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-bottom: 10px;
+        }
+
+        .side-nav a:hover { color: var(--accent-blue); padding-left: 10px; }
+
+        .btn-login-nav {
+            margin-top: 20px;
+            padding: 12px;
+            background: linear-gradient(45deg, var(--accent-blue), var(--accent-purple));
+            color: white !important;
+            text-align: center;
+            border-radius: 10px;
+            border: none !important;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: radial-gradient(circle at center, #112240 0%, #050a18 100%);
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            background: linear-gradient(to right, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 650px;
+            margin: 0 auto 40px;
+            color: #cbd5e1;
+        }
+
+        /* Dashboard Section (Original Card Design) */
+        .dashboard { padding: 100px 8%; background-color: var(--navy-dark); }
+        .section-title { font-size: 2.2rem; margin-bottom: 50px; font-weight: 700; }
+        .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
         
-        .dashboard { padding: 100px 5%; }
-        .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .glass { background: var(--glass-bg); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 25px; transition: 0.3s; }
-        .glass:hover { transform: translateY(-5px); border-color: var(--accent-blue); }
-        
-        .progress-bar { height: 10px; background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple)); border-radius: 10px; }
+        .card-link { text-decoration: none; color: inherit; display: block; }
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 35px;
+            transition: 0.4s ease;
+            height: 100%;
+        }
+
+        .glass:hover {
+            transform: translateY(-12px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.15);
+        }
+
+        /* Elements inside cards */
+        .progress-container { background: rgba(255,255,255,0.1); height: 10px; border-radius: 10px; margin: 15px 0; overflow: hidden; }
+        .progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple)); border-radius: 10px; }
+        .big-stat { font-size: 3rem; font-weight: 800; color: var(--accent-blue); margin: 10px 0; }
+        .resource-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
+        .resource-box { background: rgba(255,255,255,0.05); padding: 10px; border-radius: 10px; font-size: 0.8rem; text-align: center; }
+
     </style>
 </head>
 <body>
 
     <nav class="navbar">
-        <div class="logo">LEARNIX</div>
-        <div class="menu-icon" onclick="toggleMenu()">☰</div>
-        <div class="nav-menu" id="navMenu">
-            <a href="#hero" onclick="toggleMenu()">Home</a>
-            <a href="#dashboard" onclick="toggleMenu()">Dashboard</a>
-            <a href="resourcelibrary.html">Resources</a>
-            <a href="login.html" class="btn-login-nav">Login / Sign Up</a>
-        </div>
+        <div class="logo">Learnix</div>
+        <div class="menu-btn" onclick="toggleMenu()">☰</div>
     </nav>
+
+    <div class="side-nav" id="sideNav">
+        <a href="#hero" onclick="toggleMenu()">Home</a>
+        <a href="#dashboard" onclick="toggleMenu()">Dashboard</a>
+        <a href="resourcelibrary.html">Resources</a>
+        <a href="community.html">Community</a>
+        <a href="login.html" class="btn-login-nav">Login / Register</a>
+    </div>
 
     <header class="hero" id="hero">
         <div class="hero-content">
+            <div style="font-size: 3rem; margin-bottom: 10px;">✨🧠✨</div>
             <h1>UNLEASH YOUR POTENTIAL</h1>
-            <p>Your cosmic gateway to smart learning starts here.</p>
-            <br>
-            <a href="#dashboard" style="text-decoration:none; padding:15px 30px; background:var(--accent-blue); color:var(--navy-dark); border-radius:30px; font-weight:bold;">Explore Now</a>
+            <p>Elevate your study experience with Learnix, the cosmic gateway to smart learning.</p>
+            <a href="#dashboard" style="text-decoration:none; padding:15px 40px; background:linear-gradient(45deg, var(--accent-blue), var(--accent-purple)); color:white; border-radius:30px; font-weight:bold;">Get Started</a>
         </div>
     </header>
 
     <section class="dashboard" id="dashboard">
-        <h2 style="margin-bottom:30px;">Your Dashboard</h2>
-        <div class="dashboard-grid">
-            <a href="currentcourses.html" style="text-decoration:none; color:inherit;">
-                <div class="glass">
-                    <h3>📚 Courses</h3>
-                    <div style="margin-top:15px; width:100%; background:rgba(255,255,255,0.1); border-radius:10px;">
-                        <div class="progress-bar" style="width: 65%;"></div>
+        <div class="container">
+            <h2 class="section-title">Personalized Dashboard</h2>
+            <div class="dashboard-grid">
+                
+                <a href="currentcourses.html" class="card-link">
+                    <div class="card glass">
+                        <h3>📚 Current Courses</h3>
+                        <div style="margin-top:20px;">
+                            <small>Physics: Quantum Mechanics</small>
+                            <div class="progress-container"><div class="progress-bar" style="width: 75%;"></div></div>
+                            <small>ICT: Web Development</small>
+                            <div class="progress-container"><div class="progress-bar" style="width: 40%;"></div></div>
+                        </div>
                     </div>
+                </a>
+
+                <div class="card glass" onclick="updateGoal()" style="cursor: pointer;">
+                    <h3>🎯 Daily Study Goal</h3>
+                    <div id="goalDisplay" class="big-stat">4 Hours</div>
+                    <div class="progress-container" style="height: 20px;">
+                        <div id="goalBar" class="progress-bar" style="width: 50%; line-height: 20px; text-align: center; font-size: 0.7rem;">2h / 4h</div>
+                    </div>
+                    <small style="color:var(--accent-blue);">Click to edit ✎</small>
                 </div>
-            </a>
-            <div class="glass" onclick="updateGoal()" style="cursor:pointer;">
-                <h3>🎯 Daily Goal</h3>
-                <p id="goalText" style="font-size:1.5rem; margin:10px 0; color:var(--accent-blue);">4 Hours</p>
-                <small>Click to edit target</small>
+
+                <a href="resourcelibrary.html" class="card-link">
+                    <div class="card glass">
+                        <h3>📂 Resources</h3>
+                        <div class="resource-grid">
+                            <div class="resource-box">PDF Notes</div>
+                            <div class="resource-box">Videos</div>
+                            <div class="resource-box">Quizzes</div>
+                            <div class="resource-box">Papers</div>
+                        </div>
+                    </div>
+                </a>
+
             </div>
-            </div>
+        </div>
     </section>
 
     <script>
         function toggleMenu() {
-            document.getElementById('navMenu').classList.toggle('active');
+            document.getElementById('sideNav').classList.toggle('active');
         }
 
         function updateGoal() {
             const goal = prompt("নতুন টার্গেট সেট করুন (ঘণ্টা):", "4");
-            if(goal) {
+            if(goal && !isNaN(goal)) {
                 localStorage.setItem('learnix_goal', goal);
-                document.getElementById('goalText').innerText = goal + " Hours";
+                renderGoal();
             }
         }
 
-        window.onload = () => {
-            const saved = localStorage.getItem('learnix_goal');
-            if(saved) document.getElementById('goalText').innerText = saved + " Hours";
+        function renderGoal() {
+            const saved = localStorage.getItem('learnix_goal') || 4;
+            document.getElementById('goalDisplay').innerText = saved + " Hours";
+            document.getElementById('goalBar').innerText = "Target: " + saved + "h";
         }
+
+        window.onload = renderGoal;
     </script>
 </body>
 </html>
