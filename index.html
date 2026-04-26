@@ -7,34 +7,51 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        html {
-            scroll-behavior: smooth;
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #020617; /* Deep Navy */
-        }
-        .hero-gradient {
-            background: radial-gradient(circle at center, #1e293b 0%, #020617 100%);
-        }
-        .glow-effect {
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
-        }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background-color: #020617; }
+        .hero-gradient { background: radial-gradient(circle at center, #1e293b 0%, #020617 100%); }
+        .glow-effect { box-shadow: 0 0 20px rgba(56, 189, 248, 0.5); }
+        .mobile-menu-active { display: flex !important; }
     </style>
 </head>
 <body class="text-white">
 
-    <nav class="flex justify-between items-center px-10 py-6 bg-slate-950/50 backdrop-blur-md sticky top-0 z-50">
-        <div class="text-2xl font-bold tracking-wider text-sky-400">LEARNIX</div>
-        <div class="hidden md:flex space-x-8 text-sm uppercase tracking-widest font-medium">
-            <a href="#home" class="hover:text-sky-400 transition">Home</a>
-            <a href="#courses" class="hover:text-sky-400 transition">Courses</a>
-            <a href="#dashboard" class="hover:text-sky-400 transition">Dashboard</a>
-            <a href="#contact" class="hover:text-sky-400 transition">Contact</a>
+    <nav class="bg-slate-950/80 backdrop-blur-lg sticky top-0 z-50 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 overflow-hidden rounded-lg">
+                    <img src="logo.png" alt="L" class="w-full h-full object-contain">
+                </div>
+                <div class="text-2xl font-bold tracking-wider text-sky-400">LEARNIX</div>
+            </div>
+
+            <div class="hidden md:flex space-x-10 text-sm uppercase tracking-widest font-medium">
+                <a href="#home" class="hover:text-sky-400 transition duration-300">Home</a>
+                <a href="#courses" class="hover:text-sky-400 transition duration-300">Courses</a>
+                <a href="#dashboard" class="hover:text-sky-400 transition duration-300">Dashboard</a>
+                <a href="#contact" class="hover:text-sky-400 transition duration-300">Contact</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <button class="hidden sm:block bg-sky-600 hover:bg-sky-500 px-6 py-2 rounded-full font-semibold transition glow-effect">
+                    Get Started
+                </button>
+                
+                <button id="menu-btn" class="md:hidden text-sky-400 focus:outline-none">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
         </div>
-        <button class="bg-sky-600 hover:bg-sky-500 px-6 py-2 rounded-full font-semibold transition glow-effect">
-            Get Started
-        </button>
+
+        <div id="mobile-menu" class="hidden flex-col bg-slate-950 border-t border-slate-800 md:hidden">
+            <a href="#home" class="px-6 py-4 border-b border-slate-900 hover:bg-slate-900 transition">Home</a>
+            <a href="#courses" class="px-6 py-4 border-b border-slate-900 hover:bg-slate-900 transition">Courses</a>
+            <a href="#dashboard" class="px-6 py-4 border-b border-slate-900 hover:bg-slate-900 transition">Dashboard</a>
+            <a href="#contact" class="px-6 py-4 hover:bg-slate-900 transition">Contact</a>
+        </div>
     </nav>
 
     <section id="home" class="hero-gradient min-h-screen flex flex-col items-center justify-center text-center px-4 relative overflow-hidden">
@@ -43,7 +60,7 @@
 
         <div class="mb-8 relative">
             <div class="w-32 h-32 md:w-48 md:h-48 bg-slate-900 border border-sky-500/30 rounded-2xl flex items-center justify-center glow-effect overflow-hidden">
-                <img src="logo.png" alt="Learnix Logo" class="w-full h-full object-contain">
+                <img src="logo.png" alt="Learnix Logo" class="w-full h-full object-contain p-4">
             </div>
         </div>
 
@@ -52,11 +69,11 @@
         </h1>
         <p class="text-slate-400 max-w-2xl text-lg mb-10 leading-relaxed">
             Unlock the galaxy of knowledge with our AI-powered study platform. 
-            Smart features, interactive quizzes, and a futuristic dashboard designed for students.
+            Smart features and a futuristic dashboard designed for students.
         </p>
 
         <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6">
-            <button class="bg-white text-slate-900 px-10 py-4 rounded-xl font-bold hover:bg-sky-100 transition">
+            <button class="bg-white text-slate-900 px-10 py-4 rounded-xl font-bold hover:bg-sky-100 transition shadow-xl">
                 Start Learning
             </button>
             <button class="border border-slate-700 px-10 py-4 rounded-xl font-bold hover:bg-slate-800 transition">
@@ -66,19 +83,36 @@
     </section>
 
     <section id="courses" class="py-20 px-10 grid grid-cols-1 md:grid-cols-2 gap-10 bg-slate-950">
-        <div class="bg-slate-900/50 border border-slate-800 p-8 rounded-3xl hover:border-sky-500/50 transition">
+        <div class="bg-slate-900/50 border border-slate-800 p-8 rounded-3xl hover:border-sky-500/50 transition cursor-pointer">
             <h3 class="text-2xl font-bold mb-4 text-sky-400">Interactive Lessons</h3>
-            <p class="text-slate-400">Detailed course materials with cosmic-themed visuals to make learning fascinating and detachment-free.</p>
+            <p class="text-slate-400">Detailed course materials with cosmic-themed visuals to make learning fascinating.</p>
         </div>
-        <div id="dashboard" class="bg-slate-900/50 border border-slate-800 p-8 rounded-3xl hover:border-sky-500/50 transition">
+        <div id="dashboard" class="bg-slate-900/50 border border-slate-800 p-8 rounded-3xl hover:border-sky-500/50 transition cursor-pointer">
             <h3 class="text-2xl font-bold mb-4 text-sky-400">Student Dashboard</h3>
-            <p class="text-slate-400">Track your progress, manage assignments, and stay organized with our smart student portal.</p>
+            <p class="text-slate-400">Track your progress and stay organized with our smart student portal.</p>
         </div>
     </section>
 
-    <footer id="contact" class="py-10 text-center text-slate-500 border-t border-slate-900">
-        <p>Contact us at support@learnix.com</p>
+    <footer id="contact" class="py-12 text-center text-slate-500 border-t border-slate-900">
+        <p>Contact us: support@learnix.com</p>
     </footer>
+
+    <script>
+        const btn = document.getElementById('menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('flex');
+        });
+
+        // Close menu when clicking a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+    </script>
 
 </body>
 </html>
